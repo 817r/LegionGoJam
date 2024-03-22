@@ -132,14 +132,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3882162607565966679, guid: b3d238727434e644f907708369274a9c, type: 3}
-      propertyPath: MHP
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3882162607565966679, guid: b3d238727434e644f907708369274a9c, type: 3}
-      propertyPath: parent
-      value: 
-      objectReference: {fileID: 2123203274}
-    - target: {fileID: 3882162607565966679, guid: b3d238727434e644f907708369274a9c, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 800662429}
@@ -147,18 +139,6 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1912856933}
-    - target: {fileID: 3882162607565966679, guid: b3d238727434e644f907708369274a9c, type: 3}
-      propertyPath: raycastMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 4003810466214912346, guid: b3d238727434e644f907708369274a9c, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.39846295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4003810466214912346, guid: b3d238727434e644f907708369274a9c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0116
-      objectReference: {fileID: 0}
     - target: {fileID: 4329482797371493888, guid: b3d238727434e644f907708369274a9c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3355857
@@ -228,17 +208,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 941482783111907189, guid: eec9c0c416138934a9106d32084f69be, type: 3}
-      propertyPath: MHP
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 941482783111907189, guid: eec9c0c416138934a9106d32084f69be, type: 3}
       propertyPath: _enemy
       value: 
       objectReference: {fileID: 334003332}
-    - target: {fileID: 1424130590875186859, guid: eec9c0c416138934a9106d32084f69be, type: 3}
-      propertyPath: orthographic size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1869973882788846589, guid: eec9c0c416138934a9106d32084f69be, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.5555
@@ -281,10 +253,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6664290807309363937, guid: eec9c0c416138934a9106d32084f69be, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6664290807309363937, guid: eec9c0c416138934a9106d32084f69be, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1066,11 +1034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f3fa2a35335144f9fc2e83c0b30d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2123203274 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8569602304653239163, guid: b3d238727434e644f907708369274a9c, type: 3}
-  m_PrefabInstance: {fileID: 54935728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

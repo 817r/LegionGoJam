@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3574154247388750998}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,6 +250,10 @@ MonoBehaviour:
   _sprite: {fileID: 11496691993570984}
   _animator: {fileID: 3574154247388750998}
   _counterAttack: 0
+  _attackCA: 0
+  _enemy: {fileID: 0}
+  HP: 0
+  MHP: 10
 --- !u!95 &3574154247388750998
 Animator:
   serializedVersion: 5
@@ -340,7 +344,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 2.2
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

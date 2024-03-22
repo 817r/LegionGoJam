@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 4763551865510643667}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0022, y: -0.07, z: 0.5}
-  m_LocalScale: {x: 0.3708357, y: 0.115, z: 1}
+  m_LocalPosition: {x: -0.0116, y: -0.07, z: 0.5}
+  m_LocalScale: {x: 0.39846295, y: 0.115, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 90435397623177841}
@@ -407,13 +407,17 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   isChasing: 0
   chaseDistance: 5
+  playerController: {fileID: 0}
+  parent: {fileID: 8569602304653239163}
   rayCast: {fileID: 0}
   raycastMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   rayCastLength: 2
   attackDistance: 2
   timer: 3
+  HP: 0
+  MHP: 2
 --- !u!95 &2732618834254237137
 Animator:
   serializedVersion: 5
