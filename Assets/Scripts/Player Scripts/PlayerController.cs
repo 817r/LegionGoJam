@@ -18,8 +18,12 @@ namespace RDCT
         public Animator _animator;
         bool _enableMove = true;
         public bool _counterAttack = false;
+        public bool _attackCA;
         private bool isJumping, isFalling;
-        
+        public AiMove _enemy;
+
+        public int HP;
+        public int MHP;
 
         private float inputAxis;
 
@@ -38,13 +42,18 @@ namespace RDCT
         private float _realCounterTime;
         private float moveDelay;
 
+        private void Start()
+        {
+            HP = MHP;
+        }
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<CapsuleCollider2D>();
             _animator = GetComponent<Animator>();
-
-            moveDelay = _timeStamp * 1.2f;
+            _realCounterTime = _counterTime * 3f;
+            moveDelay = _timeStamp * 1.5f;
 
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
         }
@@ -73,7 +82,7 @@ namespace RDCT
 
             if (counter && _grounded && _frameVelocity.x == 0)
             {
-                _counterAttack = _counterTime < _realCounterTime * .5f;
+                _counterAttack = true;
                 _realCounterTime = _counterTime;
                 _animator.SetBool("attack", true);
                 _enableMove = false;
@@ -82,12 +91,12 @@ namespace RDCT
             {
                 _enableMove = true;
                 _animator.SetBool("attack", false);
-                _counterAttack = false;
                 _realCounterTime = 0;
             }
 
             if (attack)
             {
+                _attackCA = true;
                 _animator.SetBool("isAttacking", attack);
             }
 
@@ -97,7 +106,6 @@ namespace RDCT
                 _animator.SetBool("isJumping", isJumping);
             } else isJumping = false;
             _animator.SetBool("isJumping", isJumping);
-
 
         }
 
@@ -271,13 +279,41 @@ namespace RDCT
         {
             float animController = _rb.velocity.x;
             if(animController < 0) animController = 1;           
-            
-            
-
             _animator.SetFloat("Speed", animController);
             _rb.velocity = _frameVelocity;
         }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.tag == "enemy")
+            {
+                if (_counterAttack)
+                {
+                    if(_attackCA)
+                    {
+                        _animator.SetBool("counterAttack", true);
+                        _enemy.onDamageTaken();
+                        
+                    } else if (Input.GetKeyUp(KeyCode.O)) _animator.SetBool("counterAttack", false);
+                }
+                
+                else if (!_counterAttack)
+                    HP--;
+            }
+        }
+
+        public void onStopParry()
+        {
+            _counterAttack = false;
+        }
+
+        public void onStopAttack()
+        {
+            _animator.SetBool("isAttacking", false);
+            _attackCA = false;
+        }
     }
+
 
 
 

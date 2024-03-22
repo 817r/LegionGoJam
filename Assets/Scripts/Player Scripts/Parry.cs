@@ -8,6 +8,8 @@ public class Parrys : MonoBehaviour
 {
     PlayerController controller;
 
+
+
     private void Start()
     {
         controller = GetComponent<PlayerController>();
@@ -18,5 +20,13 @@ public class Parrys : MonoBehaviour
        
         
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "enemy")
+        {
+            
+        }
     }
 }

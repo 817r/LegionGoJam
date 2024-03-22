@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using RDCT;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class AiMove : MonoBehaviour
     public Transform playerTransform;
     public bool isChasing;
     public float chaseDistance;
+    public PlayerController playerController;
+    public GameObject parent;
 
     #region Public Variables
     public Transform rayCast;
@@ -29,17 +32,31 @@ public class AiMove : MonoBehaviour
     private bool inRange; 
     private bool cooling; 
     private float intTimer;
+
+    public int HP;
+    public int MHP;
     #endregion
 
     private void Awake()
     {
+        playerController = GetComponent<PlayerController>();
         intTimer = timer;
         anim = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        HP = MHP;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(HP == 0)
+        {
+            Destroy(parent);
+        }
+
         if (inRange)
         {
             hit = Physics2D.Raycast(rayCast.position, Vector2.left, rayCastLength, raycastMask);
@@ -55,11 +72,13 @@ public class AiMove : MonoBehaviour
         }
         if (inRange == false)
         {
-            anim.SetBool("Attack", false);
+            
         }
 
         if (isChasing)
         {
+            anim.SetBool("Attack", true);
+
             if (transform.position.x > playerTransform.position.x)
             {
                 transform.localScale = new Vector3(1, 1, 1);
@@ -79,11 +98,7 @@ public class AiMove : MonoBehaviour
             if (Vector2.Distance(transform.position, playerTransform.position) < chaseDistance)
             {
                 isChasing = true;
-                anim.SetBool("Attack", true);
             }
-
-            if (Vector2.Distance(transform.position, playerTransform.position) < chaseDistance * 1.2f) isChasing = false;
-
 
             if (patrolDestination == 0)
             {
@@ -105,8 +120,12 @@ public class AiMove : MonoBehaviour
                 }
             }
 
+            anim.SetBool("Attack", false);
+        }
 
-            if (!isChasing) anim.SetBool("Attack", false);
+        if (Vector2.Distance(transform.position, playerTransform.position) > chaseDistance * 1.1f)
+        {
+            isChasing = false;
         }
 
         void Attack()
@@ -114,15 +133,6 @@ public class AiMove : MonoBehaviour
             timer = intTimer;
             attackMode = true;
             anim.SetBool("Attack", true);
-        }
-
-        void OnTriggerEnter2D(Collider2D trig)
-        {
-            if (trig.gameObject.tag == "Player")
-            {
-                target = trig.gameObject;
-                inRange = true;
-            }
         }
 
         void EnemyLogic()
@@ -135,8 +145,25 @@ public class AiMove : MonoBehaviour
             }
         }
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if(playerController._counterAttack == true)
+            {
+                HP--;
+            }
+        }
+    }
+
     public void Colldowntrigger()
     {
         cooling = true;
+    }
+
+    public void onDamageTaken()
+    {
+        HP--;
     }
 }
