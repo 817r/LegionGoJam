@@ -42,6 +42,12 @@ public class MenuManagerHandler : MonoBehaviour
 
     }
     public void PlayGame(){
+        SceneManager.LoadSceneAsync(3);
+    }
+    public void CreditChange(){
+        SceneManager.LoadSceneAsync(2);
+    }
+    public void MainMenuScreen(){
         SceneManager.LoadSceneAsync(1);
     }
     public void ExitGame(){
